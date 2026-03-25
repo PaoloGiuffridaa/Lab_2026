@@ -11,8 +11,15 @@ templates = Jinja2Templates(directory="./templates")  #dove sono contenuti i tem
 def home(request : Request):  #request conterrà la richiesta HTTP Get che riceve l'app
     """ Renders the home page.
     """
+
+    text = {
+        "title" : "Home Page",
+        "content" : "Welcome to the home page!",
+    }
+
     context = {     #dizionario con i dati da passare al template nelle variabili jinja2
-        "text" : "<a href='https://www.google.com'>Google</a>"  #vengono interpretati come stringhe (sanitizzazione input)
+        "text" : text,  #passaggio parametri al template, in questo caso text è un dizionario con title e content
+        "sequence" : ['a', 'b', 'c', 'd', 'e'],  #passaggio di una lista al template
     }
 
     return templates.TemplateResponse(  #restituisce la pagina web home.html con i dati di context
