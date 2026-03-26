@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Titolo</title>
+        <title>College Universitario Sant'Efisio</title>
+        <link rel="stylesheet" href="{{url_for('aaaaa', path='style.css')}}">
     </head>
     <body>
         <header>
             <h1>Un sito web</h1>
-            <p>Benvenuti nel mio sito web!</p>
+            <p>Benvenuti nel sito web del CUSE</p>
         </header>
         <nav>
             <a href="/">Home</a>
-            <a href="https://wikipedia.it">Wikipedia</a>
-            <a href = "#"> qualcosa</a>
+            <a href = "{{ url_for('collegiali_page') }}">Collegiali</a> {# per le funzioni mettiamo il nome funzione #}
         </nav>
         <div class = "container">
             {% block content%} 
