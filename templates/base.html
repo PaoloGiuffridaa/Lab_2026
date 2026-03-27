@@ -12,6 +12,7 @@
         <nav>
             <a href="/">Home</a>
             <a href = "{{ url_for('collegiali_page') }}">Collegiali</a> {# per le funzioni mettiamo il nome funzione #}
+            <a href = "{{ url_for('add_collegiale') }}">Aggiungi Collegiale</a>
         </nav>
         <div class = "container">
             {% block content%} 

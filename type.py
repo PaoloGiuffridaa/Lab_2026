@@ -1,3 +1,5 @@
+from typing import Annotated
+
 def compute_sum(
         x: float, 
         y: float, 
@@ -11,3 +13,5 @@ print(s)
 a: list[int]    #lista di interi
 b: dict[str, int]   #dizionario con la struttura stringa:int
 c: list | tuple | None  #c può essere una lista o tupla o None
+
+x: Annotated[int, ...,...,...]  #primo campo = tipo, gli altri campi sono metadati, 
