@@ -91,3 +91,9 @@ def insert_collegiale_json(
     """ Inserts collegiale into the list using a JSON to receive data
     """
     collegiali_list.append(collegiale)
+@app.get("/collegiali_json")
+def collegiali_json():
+    """ Returns the list of collegiali in JSON format.
+    """
+    
+    return collegiali_list  
