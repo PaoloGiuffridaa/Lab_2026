@@ -1,6 +1,10 @@
 from pydantic import BaseModel, Field
 from typing import Annotated    #aggiunge alla tipizzazione degli altri metadati
 
+class BookPatch(BaseModel):
+    title: str = None
+    author: str = None
+
 class Book(BaseModel):
     #pydantic fa la validazione dell'input
     id: int
@@ -23,8 +27,8 @@ class Book(BaseModel):
 
 books = {
     0: Book(id=0, title="Il nome della rosa", author="Umberto Eco", review=5),
-    1: Book(id=1, title="Il Maestro e Margherita", author="Michail Bulgakov", review=5),
-    2: Book(id=2, title="Il Signore degli Anelli", author="J.R.R. Tolkien", review=5)
+    1: Book(id=1, title="Il Maestro e Margherita", author="Michail Bulgakov", review=3),
+    2: Book(id=2, title="Il Signore degli Anelli", author="J.R.R. Tolkien", review=1)
 }
 
 
