@@ -1,11 +1,8 @@
 from pydantic import BaseModel, Field
 from typing import Annotated    #aggiunge alla tipizzazione degli altri metadati
+from sqlmodel import SQLModel
 
-class BookPatch(BaseModel):
-    title: str = None
-    author: str = None
-
-class Book(BaseModel):
+class Book(SQLModel, table = True): #sia modello pydantic che tabella ORM
     #pydantic fa la validazione dell'input
     id: int
     title: str
