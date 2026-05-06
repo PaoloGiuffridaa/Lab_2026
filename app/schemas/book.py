@@ -1,8 +1,25 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Annotated    #aggiunge alla tipizzazione degli altri metadati
-from sqlmodel import SQLModel
+from sqlmodel import SQLModel, Field
 
-class Book(SQLModel, table = True): #sia modello pydantic che tabella ORM
+#quando book diventa SQLmodel non implementa più la validazione dell'input di pydantic, devo farla usando altre classi
+class BookBase(SQLModel):
+    title: str
+    author: str
+    review: Annotated[int, Field(ge=1, le=5)] = None #valore di default (campo opzionale)
+
+#classe utilizzata nelle post
+class BookCreate(BookBase):
+    pass
+
+#schema usato nelle get
+class BookPublic(BookBase):
+    id: int
+
+class BookDB(BookBase, table=True):#sia modello pydantic che tabella ORM 
+    id: int = Field(default = None, primary_key=True)
+
+class Book(SQLModel): 
     #pydantic fa la validazione dell'input
     id: int
     title: str
