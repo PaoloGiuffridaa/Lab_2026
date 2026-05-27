@@ -1,9 +1,8 @@
-import os
-
 from sqlmodel import create_engine, SQLModel, Session
 from typing import Annotated
 from fastapi import Depends
 from app.schemas.book import BookDB #noqa
+from app.schemas.users import UserDB #noqa
 from faker import Faker #faker è una libreria che permette di generare dati casuali in varie lingue
 import os
 
@@ -25,9 +24,17 @@ def init_database():
                 book = BookDB(
                     title=f.sentence(nb_words=4), #genera un titolo casuale con 4 parole
                     author=f.name(), #genera un nome di autore casuale
-                    review=f.pyint(min_value=1, max_value=5) #genera una recensione casuale tra 1 e 5
+                    review=f.pyint(min_value=1, max_value=5), #genera una recensione casuale tra 1 e 5
+                    user_id = f.pyint(min_value=1, max_value=10) #genera un id utente casuale tra 1 e 10 (assumendo che ci siano 10 utenti)
                 )
                 session.add(book) #aggiunge il libro alla sessione del database
+            for _ in range(10): #genera 10 utenti casuali
+                user = UserDB(
+                    name=f.name(), #genera un nome di utente casuale
+                    birth_date=f.date_of_birth(), #genera una data di nascita casuale
+                    city=f.city() #genera una città casuale
+                )
+                session.add(user) #aggiunge l'utente alla sessione del database
             session.commit() #salva le modifiche al database    
 
 

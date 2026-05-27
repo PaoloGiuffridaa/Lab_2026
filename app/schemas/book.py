@@ -18,6 +18,7 @@ class BookPublic(BookBase):
 
 class BookDB(BookBase, table=True):#sia modello pydantic che tabella ORM 
     id: int = Field(default = None, primary_key=True)
+    user_id: int | None = Field(default=None, foreign_key="userdb.id")  #aggiungiamo la chiave esterna degli utenti, I NOMI DELLE TABELLE SONO I NOMI DELLE CLASSI IN MINUSCOLO
 
 class Book(SQLModel): 
     #pydantic fa la validazione dell'input

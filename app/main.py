@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.routers.users import users_router
 from app.routers.books import books_router
 from contextlib import asynccontextmanager
 from app.data.db import init_database
@@ -12,3 +13,4 @@ async def lifespan(app: FastAPI): #definisce operazioni da eseguire in avvio e i
 
 app = FastAPI(lifespan=lifespan)
 app.include_router(books_router) # includiamo il router dei libri nell'app principale
+app.include_router(users_router) # includiamo il router degli utenti nell'app principale
